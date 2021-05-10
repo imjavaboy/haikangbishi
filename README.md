@@ -1,24 +1,17 @@
-# pinghengwei
+# 平衡位计算+监听resize事件
 
-## Project setup
-```
-npm install
-```
+## 平衡位计算器
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. 下载本项目，npm install,然后运行npm run serve即可。
+2. 根目录下访问的是计算页面，只能输入数字和英文逗号，否则提示输入
+    错误，输入完毕后，点击计算按钮，计算的结果显示在下面框框里面
+3. *实现原理*：
+    1. 布局页面，监听输入框离焦事件，运用正则表达式判断输入是否合法，不合法，则给出相应的提示。
+    2. 点击计算，运用for循环，将左半部分为0，右半部分为从第一个加到最后一个的和，
+    左边右移移位求和，右边右移一位求差，若左右相等则返回平衡位，否则返回-1.
+## resize事件监听
+1. 由于监听变化是对dom元素的改变就会触发，所以将此观察者函数写到mounted钩子函数里面，
+window.MutationObserver是一个观察者类，可以监听dom的变化。
+2. 通过getComputedStyle方法拿到操作div的宽高，并每次判断宽高和原宽高是否相同，如果相同则return，不同记录下
+宽高，并把记录次数加一。
+    
